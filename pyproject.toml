@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "github-profile-manager"
+version = "1.0.0"
+description = "A tool I use to manage my github profile"
+authors = ["Clemfou <clemfou@email.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<4.0"
+pydantic = "^1.10.5"
+requests = "^2.32.2"
+
+[tool.poetry.scripts]
+github-profile-manager = "github_profile_manager:main"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
+
+[build-system]
+requires = ["poetry>=1.0.0"]
+build-backend = "poetry.masonry.api"

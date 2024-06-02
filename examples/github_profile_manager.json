@@ -1,0 +1,38 @@
+{
+  "api_config": {
+    "base_url": "https://api.github.com",
+    "token": "your_token"
+  },
+  "logging_config": {
+    "disable_existing_loggers": false,
+    "formatters": {
+      "simple": {
+        "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+      }
+    },
+    "handlers": {
+      "console": {
+        "class": "logging.StreamHandler",
+        "formatter": "simple",
+        "level": "DEBUG",
+        "stream": "ext://sys.stdout"
+      }
+    },
+    "loggers": {
+      "github-profile-manager": {
+        "handlers": [
+          "console"
+        ],
+        "level": "DEBUG",
+        "propagate": false
+      }
+    },
+    "root": {
+      "handlers": [
+        "console"
+      ],
+      "level": "DEBUG"
+    },
+    "version": 1
+  }
+}
