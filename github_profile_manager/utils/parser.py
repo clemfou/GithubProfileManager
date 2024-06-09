@@ -6,8 +6,8 @@ from pathlib import Path
 from github_profile_manager.account import GithubAccount
 
 
-def parse_args(args):
-    """Main parser."""
+def parse_args(args: list) -> argparse.Namespace:
+    """Parse arguments."""
     parser = argparse.ArgumentParser(
         prog="github-profile-manager",
         description="A tool I use to manage my github profile",

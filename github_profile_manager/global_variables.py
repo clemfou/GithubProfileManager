@@ -1,8 +1,8 @@
 """Global variables."""
 
-from typing import Optional
+from __future__ import annotations
 
-from github_profile_manager.utils.config import Config
+from github_profile_manager.utils.config import Config  # noqa: TCH001
 
-CONFIG: Optional[Config] = None
+CONFIG: Config | None = None
 LOGGER = None

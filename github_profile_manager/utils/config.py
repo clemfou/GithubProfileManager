@@ -1,8 +1,9 @@
-# pylint: disable=too-few-public-methods
+# ruff: noqa: FA100
 """Handle configuration files."""
 
 from typing import Dict, List
-from pydantic import BaseModel, SecretStr, AnyHttpUrl, Field
+
+from pydantic import AnyHttpUrl, BaseModel, Field, SecretStr
 
 
 class FormatterConfig(BaseModel):

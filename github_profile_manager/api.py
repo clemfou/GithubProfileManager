@@ -1,14 +1,14 @@
 """Handle API requests."""
 
+from __future__ import annotations
+
 import json
 
-from typing import Optional
 import requests
-
 from urllib3.exceptions import HTTPError
 
 from github_profile_manager import global_variables as globs
-from github_profile_manager.utils.config import APIConfig
+from github_profile_manager.utils.config import APIConfig  # noqa: TCH001
 
 
 class GithubAPI:
@@ -21,23 +21,20 @@ class GithubAPI:
         self.session = requests.Session()
         self.set_headers()
 
-    def set_headers(self, other_headers=None) -> None:
+    def set_headers(self) -> None:
         """Handle HTTP GET requests."""
         headers = {
             "Authorization": f"Bearer {self.token.get_secret_value()}",
         }
-        if other_headers:
-            headers.update(other_headers)
-
         return self.session.headers.update(headers)
 
-    def _handle_response(self, response: requests.Response) -> Optional[list]:
+    def _handle_response(self, response: requests.Response) -> list | None:
         """Handle HTTP responses."""
-        if response.status_code >= 200 and response.status_code <= 299:
+        if response.status_code in range(200, 299):
             globs.LOGGER.debug("%s: Operation successful", response.status_code)
 
         else:
-            raise HTTPError(f"{response.status_code}: {response.reason}")
+            raise HTTPError
 
         if response.text:
             try:
@@ -48,7 +45,7 @@ class GithubAPI:
 
         return None
 
-    def get(self, endpoint: str) -> Optional[list]:
+    def get(self, endpoint: str) -> list | None:
         """Handle HTTP GET requests."""
         url = f"{self.base_url}/{endpoint}"
 
@@ -60,7 +57,7 @@ class GithubAPI:
 
         return self._handle_response(response)
 
-    def post(self, endpoint: str, data=None) -> Optional[list]:
+    def post(self, endpoint: str, data: dict | None = None) -> list | None:
         """Handle HTTP POST requests."""
         url = f"{self.base_url}/{endpoint}"
         data = json.dumps(data)
@@ -73,7 +70,7 @@ class GithubAPI:
 
         return self._handle_response(response)
 
-    def delete(self, endpoint: str) -> Optional[list]:
+    def delete(self, endpoint: str) -> list | None:
         """Handle HTTP DELETE requests."""
         url = f"{self.base_url}/{endpoint}"
 
