@@ -1,14 +1,14 @@
 """Manages my github account ssh keys."""
 
-import json
-
 from github_profile_manager import global_variables as globs
 
 
 def list_ssh_key() -> None:
     """List SSH keys encoded in my github account."""
     ssh_keys = globs.GITHUB_API.get("user/keys")
-    print(json.dumps(ssh_keys, indent=4))  # noqa: T201
+
+    for key in ssh_keys:
+        globs.LOGGER.info("Found key", extra={"extra": key})
 
 
 def remove_ssh_key(key_id: str) -> None:

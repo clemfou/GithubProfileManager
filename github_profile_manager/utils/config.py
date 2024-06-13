@@ -1,7 +1,7 @@
 # ruff: noqa: FA100
 """Handle configuration files."""
 
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from pydantic import AnyHttpUrl, BaseModel, Field, SecretStr
 
@@ -9,7 +9,8 @@ from pydantic import AnyHttpUrl, BaseModel, Field, SecretStr
 class FormatterConfig(BaseModel):
     """Formatter configuration for the logging module."""
 
-    format: str
+    format: Optional[str] = None
+    class_: str = Field(None, alias="class")
 
 
 class HandlerConfig(BaseModel):

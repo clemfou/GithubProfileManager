@@ -8,12 +8,15 @@
     "formatters": {
       "simple": {
         "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+      },
+      "custom": {
+        "class": "github_profile_manager.utils.logging.CustomFormatter"
       }
     },
     "handlers": {
       "console": {
         "class": "logging.StreamHandler",
-        "formatter": "simple",
+        "formatter": "custom",
         "level": "INFO",
         "stream": "ext://sys.stdout"
       }

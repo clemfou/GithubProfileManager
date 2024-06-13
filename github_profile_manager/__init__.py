@@ -8,6 +8,7 @@ from pathlib import Path
 from github_profile_manager import global_variables as globs
 from github_profile_manager.api import GithubAPI
 from github_profile_manager.utils.config import Config
+from github_profile_manager.utils.logging import setup_logger
 from github_profile_manager.utils.parser import parse_args
 
 
@@ -21,14 +22,6 @@ def load_configuration(configuration_file: Path) -> Config:
         sys.exit(1)
 
     return configuration
-
-
-def setup_logger() -> logging.Logger:
-    """Set up the logging module."""
-    logger_config = globs.CONFIG.logging_config.dict(by_alias=True)
-    logging.config.dictConfig(logger_config)
-
-    return logging.getLogger(__name__)
 
 
 def main() -> None:
